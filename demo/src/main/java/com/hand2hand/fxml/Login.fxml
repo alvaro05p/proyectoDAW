@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.LoginController">
+   <children>
+      <TextField layoutX="195.0" layoutY="102.0" prefHeight="38.0" prefWidth="197.0" />
+      <PasswordField layoutX="195.0" layoutY="156.0" prefHeight="38.0" prefWidth="197.0" />
+      <Button fx:id="iniciarSesion" layoutX="271.0" layoutY="213.0" mnemonicParsing="false" onAction="#enviarApagina" prefHeight="38.0" prefWidth="121.0" text="Iniciar sesion" />
+      <Label layoutX="103.0" layoutY="106.0" prefHeight="26.0" prefWidth="64.0" text="Usuario" />
+      <Label layoutX="99.0" layoutY="160.0" prefHeight="18.0" prefWidth="91.0" text="Contraseña" />
+      <Text layoutX="103.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicia sesion para conmenzar:" wrappingWidth="227.13000106811523" />
+      <ImageView fitHeight="263.0" fitWidth="294.0" layoutX="500.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Captura%20desde%202024-05-01%2019-56-31.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="entrarRegistro" layoutX="85.0" layoutY="516.0" mnemonicParsing="false" onAction="#enviaraRegistro" text="Registrarse" />
+      <Label layoutX="85.0" layoutY="481.0" text="No tienes una cuenta?" />
+   </children>
+</AnchorPane>
