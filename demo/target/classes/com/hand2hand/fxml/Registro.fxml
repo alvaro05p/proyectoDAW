@@ -8,22 +8,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.Registro">
    <children>
-      <TextField layoutX="228.0" layoutY="148.0" prefHeight="26.0" prefWidth="240.0" />
-      <PasswordField layoutX="228.0" layoutY="239.0" prefHeight="26.0" prefWidth="240.0" />
-      <PasswordField layoutX="228.0" layoutY="300.0" prefHeight="26.0" prefWidth="240.0" />
+      <TextField fx:id="nUsuarioField" layoutX="228.0" layoutY="148.0" prefHeight="26.0" prefWidth="240.0" />
+      <PasswordField fx:id="contraField" layoutX="228.0" layoutY="239.0" prefHeight="26.0" prefWidth="240.0" />
+      <PasswordField fx:id="repetirContraField" layoutX="228.0" layoutY="300.0" prefHeight="26.0" prefWidth="240.0" />
       <Label layoutX="146.0" layoutY="152.0" />
       <Label layoutX="134.0" layoutY="243.0" text="Contraseña:" />
       <Label layoutX="86.0" layoutY="304.0" text="Repetir contraseña:" />
       <Label layoutX="85.0" layoutY="152.0" text="Nombre de usuario:" />
-      <TextField layoutX="228.0" layoutY="89.0" prefHeight="26.0" prefWidth="240.0" />
+      <TextField fx:id="correoField" layoutX="228.0" layoutY="89.0" prefHeight="26.0" prefWidth="240.0" />
       <Label layoutX="156.0" layoutY="93.0" text="Correo:" />
       <Button fx:id="botonRegistro" layoutX="394.0" layoutY="366.0" mnemonicParsing="false" onAction="#registrar" text="Registrar" />
       <ImageView fitHeight="215.0" fitWidth="240.0" layoutX="590.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/Captura%20desde%202024-05-01%2019-56-31.png" />
+            <Image url="@../img/logo.png" />
          </image>
       </ImageView>
    </children>

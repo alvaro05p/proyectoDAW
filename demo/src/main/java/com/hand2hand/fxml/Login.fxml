@@ -19,7 +19,7 @@
       <Text layoutX="103.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicia sesion para conmenzar:" wrappingWidth="227.13000106811523" />
       <ImageView fitHeight="263.0" fitWidth="294.0" layoutX="500.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/Captura%20desde%202024-05-01%2019-56-31.png" />
+            <Image url="@../img/logo.png" />
          </image>
       </ImageView>
       <Button fx:id="entrarRegistro" layoutX="85.0" layoutY="516.0" mnemonicParsing="false" onAction="#enviaraRegistro" text="Registrarse" />

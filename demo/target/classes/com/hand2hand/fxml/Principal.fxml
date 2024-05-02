@@ -58,7 +58,7 @@
                      <children>
                         <ImageView fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../img/1280px-Tuned_Mazda_RX-7_Type_RB_(GF-FD3S)_front.jpg" />
+                              <Image url="@../img/rx7.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="14.0" layoutY="123.0" text="Mazda RX7" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
@@ -69,7 +69,7 @@
                      <children>
                         <ImageView fitHeight="117.0" fitWidth="200.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../img/Kawa_ZX600F_b1.jpg" />
+                              <Image url="@../img/kawa600.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="14.0" layoutY="123.0" text="Kawasaki 600" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
@@ -80,7 +80,7 @@
                      <children>
                         <ImageView fitHeight="117.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../img/vlone.jpg" />
+                              <Image url="@../img/vlone.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="14.0" layoutY="123.0" text="Camiseta Vlone" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
@@ -91,7 +91,7 @@
                      <children>
                         <ImageView fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../img/muebles.jpg" />
+                              <Image url="@../img/muebles.png" />
                            </image>
                         </ImageView>
                         <Label layoutY="123.0" text="Muebles artesanales" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" />
@@ -102,7 +102,7 @@
                      <children>
                         <ImageView fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../img/rack.jpg" />
+                              <Image url="@../img/rack.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="14.0" layoutY="123.0" text="Rack Gym" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
