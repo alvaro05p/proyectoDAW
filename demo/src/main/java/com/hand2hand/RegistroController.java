@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class Registro {
+public class RegistroController {
 
     @FXML
     private TextField correoField;
@@ -36,9 +36,8 @@ public class Registro {
         // Cambiar a la página principal
         // Aquí abrimos la página Principal.fxml
         String correo = correoField.getText();
-        String contra = contraField.getText();
         String nUsuario = nUsuarioField.getText();
-        
+        String contra = contraField.getText();
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             System.out.println("Conexión exitosa a la base de datos");
 
@@ -50,8 +49,8 @@ public class Registro {
             
             // Asignar valores a los parámetros de la declaración preparada
             statement.setString(1, correo); // Asigna una cadena para correo
-            statement.setString(2, contra); // Asigna una cadena para contra
-            statement.setString(3, nUsuario); // Asigna una cadena para contra
+            statement.setString(2, nUsuario); // Asigna una cadena para contra
+            statement.setString(3, contra); // Asigna una cadena para contra
 
             // Ejecutar la consulta de inserción
             int filasInsertadas = statement.executeUpdate();

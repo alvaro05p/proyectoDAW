@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.Registro">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.RegistroController">
    <children>
       <TextField fx:id="nUsuarioField" layoutX="228.0" layoutY="148.0" prefHeight="26.0" prefWidth="240.0" />
       <PasswordField fx:id="contraField" layoutX="228.0" layoutY="239.0" prefHeight="26.0" prefWidth="240.0" />
