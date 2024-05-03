@@ -11,8 +11,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.LoginController">
    <children>
-      <TextField layoutX="195.0" layoutY="102.0" prefHeight="38.0" prefWidth="197.0" />
-      <PasswordField layoutX="195.0" layoutY="156.0" prefHeight="38.0" prefWidth="197.0" />
+      <TextField fx:id="usuarioField" layoutX="195.0" layoutY="102.0" onAction="#enviarApagina" prefHeight="38.0" prefWidth="197.0" />
+      <PasswordField fx:id="contraField" layoutX="195.0" layoutY="156.0" onAction="#enviarApagina" prefHeight="38.0" prefWidth="197.0" />
       <Button fx:id="iniciarSesion" layoutX="271.0" layoutY="213.0" mnemonicParsing="false" onAction="#enviarApagina" prefHeight="38.0" prefWidth="121.0" text="Iniciar sesion" />
       <Label layoutX="103.0" layoutY="106.0" prefHeight="26.0" prefWidth="64.0" text="Usuario" />
       <Label layoutX="99.0" layoutY="160.0" prefHeight="18.0" prefWidth="91.0" text="Contraseña" />
