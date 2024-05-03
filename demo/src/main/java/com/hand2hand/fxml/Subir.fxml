@@ -12,11 +12,11 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.SubirController">
    <children>
       <TextField fx:id="nombre" layoutX="199.0" layoutY="123.0" />
-      <TextField fx:id="precio" layoutX="199.0" layoutY="186.0" />
-      <TextField fx:id="descripcion" layoutX="199.0" layoutY="254.0" />
+      <TextField fx:id="descripcion" layoutX="199.0" layoutY="186.0" />
+      <TextField fx:id="precio" layoutX="199.0" layoutY="254.0" />
       <Text layoutX="53.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Que quieres vender?" />
-      <Text layoutX="55.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" />
-      <Text layoutX="52.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripcion" />
+      <Text layoutX="55.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripcion" />
+      <Text layoutX="52.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" />
       <SplitMenuButton layoutX="199.0" layoutY="323.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="171.0" text="Estado">
         <items>
           <MenuItem mnemonicParsing="false" text="Sin abrir" />
@@ -39,6 +39,6 @@
       </SplitMenuButton>
       <ImageView fx:id="imagenView" fitHeight="310.0" fitWidth="348.0" layoutX="500.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="botonSeleccionar" layoutX="500.0" layoutY="115.0" mnemonicParsing="false" onAction="#seleccionarImagen" text="Subir imagen" />
-      <Button fx:id="subirProducto" layoutX="707.0" layoutY="507.0" mnemonicParsing="false" onAction="#subirProducto" prefHeight="51.0" prefWidth="154.0" text="Subir producto" />
+      <Button fx:id="botonSubirProducto" layoutX="707.0" layoutY="507.0" mnemonicParsing="false" onAction="#subirProducto" prefHeight="51.0" prefWidth="154.0" text="Subir producto" />
    </children>
 </AnchorPane>

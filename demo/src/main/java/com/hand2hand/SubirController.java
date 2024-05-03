@@ -46,7 +46,7 @@ public class SubirController {
         }
     }
 
-    @FXML
+@FXML
 private TextField nombre;
 
 @FXML
@@ -54,6 +54,9 @@ private TextField descripcion;
 
 @FXML
 private TextField precio;
+
+@FXML
+private Button botonSubirProducto;
 
 @FXML
 private void subirProducto() {
@@ -87,7 +90,7 @@ private void subirProducto() {
         int filasInsertadas = statement.executeUpdate();
         System.out.println("Se insertaron " + filasInsertadas + " filas");
 
-        Stage stage = (Stage) botonSubir.getScene().getWindow();
+        Stage stage = (Stage) botonSubirProducto.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Principal.fxml"))));
 
     } catch (SQLException | IOException e) {
