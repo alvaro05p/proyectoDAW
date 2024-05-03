@@ -23,4 +23,19 @@ public class PrincipalController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private Button botonirSubir;
+
+    @FXML
+    private void irSubir() {
+        // Cambiar a la página principal
+        // Aquí abrimos la página Subir.fxml
+        try {
+            Stage stage = (Stage) botonirSubir.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Subir.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
