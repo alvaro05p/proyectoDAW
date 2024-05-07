@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,8 +30,10 @@ public class SubirController {
     @FXML
     private Button botonSubir;
 
+    byte[] imagenBytes;
+
     @FXML
-    private void seleccionarImagen() {
+    private void seleccionarImagen() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Imagen del producto");
         fileChooser.getExtensionFilters().addAll(
@@ -43,6 +46,8 @@ public class SubirController {
             // Cargar la imagen en el ImageView
             Image imagen = new Image(archivoSeleccionado.toURI().toString());
             imagenView.setImage(imagen);
+
+            imagenBytes = Files.readAllBytes(archivoSeleccionado.toPath());
         }
     }
 
@@ -56,7 +61,12 @@ private TextField descripcion;
 private TextField precio;
 
 @FXML
+private TextField anyo;
+
+@FXML
 private Button botonSubirProducto;
+
+
 
 @FXML
 private void subirProducto() {
@@ -68,15 +78,18 @@ private void subirProducto() {
     String nombreTexto = nombre.getText();
     String descripcionTexto = descripcion.getText();
     String precioTexto = precio.getText();
-    
-    // Convertir el texto del precio a un valor numérico
+    String anyoTexto = anyo.getText();
+
+
+    // Convertir el texto del precio y el año a un valor numérico
     int precio = Integer.parseInt(precioTexto);
+    int anyo = Integer.parseInt(anyoTexto);
 
     try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
         System.out.println("Conexión exitosa a la base de datos");
 
         // Query para insertar datos sin incluir la columna idUsuario
-        String sql = "INSERT INTO productos (nombre, descripcion, precio) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO productos (nombre, descripcion, precio, anyo, imagen) VALUES (?, ?, ?, ?, ?)";
 
         // Crear una declaración preparada
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -85,6 +98,8 @@ private void subirProducto() {
         statement.setString(1, nombreTexto); // Asigna una cadena para nombre
         statement.setString(2, descripcionTexto); // Asigna una cadena para descripcion
         statement.setInt(3, precio); // Asigna un entero para precio
+        statement.setInt(4, anyo);
+        statement.setBytes(5,imagenBytes);
 
         // Ejecutar la consulta de inserción
         int filasInsertadas = statement.executeUpdate();
