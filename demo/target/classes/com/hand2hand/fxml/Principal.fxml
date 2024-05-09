@@ -56,43 +56,43 @@
                   <AnchorPane layoutX="54.0" layoutY="23.0" prefHeight="155.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="hueco1" fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Label layoutX="14.0" layoutY="123.0" text="Mazda RX7" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
-                        <Label layoutX="137.0" layoutY="123.0" text="42000 €" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
+                        <Label fx:id="nombre1" layoutX="14.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" />
+                        <Label fx:id="precio1" layoutX="137.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="386.0" layoutY="23.0" prefHeight="155.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="hueco2" fitHeight="117.0" fitWidth="200.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0" />
-                        <Label layoutX="14.0" layoutY="123.0" text="Kawasaki 600" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
-                        <Label layoutX="137.0" layoutY="123.0" text="2500 €" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
+                        <Label fx:id="nombre2" layoutX="14.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" />
+                        <Label fx:id="precio2" layoutX="137.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="60.0" layoutY="193.0" prefHeight="155.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="hueco3" fitHeight="117.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0" />
-                        <Label layoutX="14.0" layoutY="123.0" text="Camiseta Vlone" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
-                        <Label layoutX="137.0" layoutY="123.0" text="246 €" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
+                        <Label fx:id="nombre3" layoutX="14.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" />
+                        <Label fx:id="precio3" layoutX="137.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="368.0" layoutY="193.0" prefHeight="155.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="hueco4" fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Label layoutY="123.0" text="Muebles artesanales" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" />
-                        <Label layoutX="145.0" layoutY="123.0" text="4300 €" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                        <Label fx:id="nombre4" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" />
+                        <Label fx:id="precio4" layoutX="145.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="54.0" layoutY="365.0" prefHeight="155.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="hueco5" fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Label layoutX="14.0" layoutY="123.0" text="Rack Gym" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
-                        <Label layoutX="137.0" layoutY="123.0" text="2000 €" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
+                        <Label fx:id="nombre5" layoutX="14.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" />
+                        <Label fx:id="precio5" layoutX="137.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="368.0" layoutY="365.0" prefHeight="155.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="hueco6" fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Label layoutY="123.0" text="Muebles artesanales" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" />
-                        <Label layoutX="145.0" layoutY="123.0" text="4300 €" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                        <Label fx:id="nombre6" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" />
+                        <Label fx:id="precio6" layoutX="145.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
                      </children>
                   </AnchorPane>
                </children>

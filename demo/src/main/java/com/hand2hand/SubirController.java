@@ -66,6 +66,21 @@ private TextField anyo;
 @FXML
 private Button botonSubirProducto;
 
+@FXML
+private Button botonCancelar;
+
+@FXML
+    private void cancelar() {
+        // Salir de la pagina de subir
+        // Aquí abrimos la página Principal.fxml
+        try {
+            Stage stage = (Stage) botonCancelar.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Principal.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 @FXML
@@ -111,6 +126,7 @@ private void subirProducto() {
     } catch (SQLException | IOException e) {
         System.out.println("Error al conectar a la base de datos: " + e.getMessage());
     }
+
 }
 
 
