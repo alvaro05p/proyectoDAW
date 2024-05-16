@@ -85,6 +85,7 @@ public class PrincipalController {
         mostrarPrecio(6,precio6);
 
 
+
     }
 
     @FXML
@@ -110,6 +111,7 @@ public class PrincipalController {
             e.printStackTrace();
         }
     }
+
 
         static final String URL = "jdbc:mysql://localhost:3306/hand2hand"; // Cambia por la URL de tu base de datos
         static final String USER = "root"; // Cambia por tu nombre de usuario
@@ -186,6 +188,93 @@ public class PrincipalController {
                 System.out.println("Error al conectar a la base de datos: " + e.getMessage());
             }
         }
+
+
+    @FXML
+    private Button prod1;
+
+    @FXML
+    private Button prod2;
+
+    @FXML
+    private Button prod3;
+
+    @FXML
+    private Button prod4;
+
+    @FXML
+    private Button prod5;
+
+    @FXML
+    private Button prod6;
+
+    @FXML
+    private void vistaPrevia1() {
+        // Cambiar a la página principal
+        // Aquí abrimos la página Principal.fxml
+        try {
+            Stage stage = (Stage) prod1.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void vistaPrevia2() {
+        // Cambiar a la página principal
+        // Aquí abrimos la página Principal.fxml
+        try {
+            Stage stage = (Stage) prod2.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void vistaPrevia3() {
+        // Cambiar a la página principal
+        // Aquí abrimos la página Principal.fxml
+        try {
+            Stage stage = (Stage) prod3.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void vistaPrevia4() {
+        // Cambiar a la página principal
+        // Aquí abrimos la página Principal.fxml
+        try {
+            Stage stage = (Stage) prod4.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void vistaPrevia5() {
+        // Cambiar a la página principal
+        // Aquí abrimos la página Principal.fxml
+        try {
+            Stage stage = (Stage) prod5.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void vistaPrevia6() {
+        // Cambiar a la página principal
+        // Aquí abrimos la página Principal.fxml
+        try {
+            Stage stage = (Stage) prod6.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 
