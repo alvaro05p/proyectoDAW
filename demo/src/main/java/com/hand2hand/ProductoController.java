@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 public class ProductoController {
     
+    int idProducto;
 
     @FXML
     private Button botonSalir;
@@ -24,6 +25,12 @@ public class ProductoController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void saberProd(int id){
+
+        idProducto=id;
+
     }
 
 }

@@ -208,10 +208,21 @@ public class PrincipalController {
     @FXML
     private Button prod6;
 
+    private ProductoController productoController;
+
+    public void setProductoController(ProductoController productoController) {
+        
+        this.productoController = productoController;
+
+    }
+
+
+
     @FXML
     private void vistaPrevia1() {
-        // Cambiar a la página principal
-        // Aquí abrimos la página Principal.fxml
+        
+        productoController.saberProd(1);
+
         try {
             Stage stage = (Stage) prod1.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
@@ -222,8 +233,9 @@ public class PrincipalController {
 
     @FXML
     private void vistaPrevia2() {
-        // Cambiar a la página principal
-        // Aquí abrimos la página Principal.fxml
+
+        productoController.saberProd(2);
+        
         try {
             Stage stage = (Stage) prod2.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
@@ -233,8 +245,9 @@ public class PrincipalController {
     }
     @FXML
     private void vistaPrevia3() {
-        // Cambiar a la página principal
-        // Aquí abrimos la página Principal.fxml
+        
+        productoController.saberProd(3);
+
         try {
             Stage stage = (Stage) prod3.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
@@ -244,8 +257,9 @@ public class PrincipalController {
     }
     @FXML
     private void vistaPrevia4() {
-        // Cambiar a la página principal
-        // Aquí abrimos la página Principal.fxml
+        
+        productoController.saberProd(4);
+
         try {
             Stage stage = (Stage) prod4.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
@@ -255,8 +269,9 @@ public class PrincipalController {
     }
     @FXML
     private void vistaPrevia5() {
-        // Cambiar a la página principal
-        // Aquí abrimos la página Principal.fxml
+        
+        productoController.saberProd(5);
+
         try {
             Stage stage = (Stage) prod5.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
@@ -266,8 +281,9 @@ public class PrincipalController {
     }
     @FXML
     private void vistaPrevia6() {
-        // Cambiar a la página principal
-        // Aquí abrimos la página Principal.fxml
+        
+        productoController.saberProd(6);
+
         try {
             Stage stage = (Stage) prod6.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
