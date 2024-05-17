@@ -236,6 +236,7 @@ public class PrincipalController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void vistaPrevia3() {
 
@@ -249,6 +250,7 @@ public class PrincipalController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void vistaPrevia4() {
 
@@ -262,6 +264,7 @@ public class PrincipalController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void vistaPrevia5() {
 
@@ -275,6 +278,7 @@ public class PrincipalController {
             e.printStackTrace();
         }
     }
+    
     @FXML
     private void vistaPrevia6() {
         
@@ -288,6 +292,7 @@ public class PrincipalController {
             e.printStackTrace();
         }
     }
+
 
 }
 

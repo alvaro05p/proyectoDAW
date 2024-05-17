@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SubirController {
@@ -96,6 +97,7 @@ private void subirProducto() {
     String anyoTexto = anyo.getText();
 
 
+
     // Convertir el texto del precio y el año a un valor numérico
     int precio = Integer.parseInt(precioTexto);
     int anyo = Integer.parseInt(anyoTexto);
@@ -103,18 +105,27 @@ private void subirProducto() {
     try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
         System.out.println("Conexión exitosa a la base de datos");
 
+        String countSql = "SELECT COUNT(*) FROM productos";
+        PreparedStatement countStatement = connection.prepareStatement(countSql);
+        ResultSet countResult = countStatement.executeQuery();
+        countResult.next(); // Mover el cursor al primer resultado
+        int rowCount = countResult.getInt(1);
+
+        int siguienteIdProducto = rowCount + 1;
+
         // Query para insertar datos sin incluir la columna idUsuario
-        String sql = "INSERT INTO productos (nombre, descripcion, precio, anyo, imagen) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO productos (idProductos, nombre, descripcion, precio, anyo, imagen) VALUES (?, ?, ?, ?, ?, ?)";
 
         // Crear una declaración preparada
         PreparedStatement statement = connection.prepareStatement(sql);
 
         // Asignar valores a los parámetros de la declaración preparada
-        statement.setString(1, nombreTexto); // Asigna una cadena para nombre
-        statement.setString(2, descripcionTexto); // Asigna una cadena para descripcion
-        statement.setInt(3, precio); // Asigna un entero para precio
-        statement.setInt(4, anyo);
-        statement.setBytes(5,imagenBytes);
+        statement.setInt(1, siguienteIdProducto);
+        statement.setString(2, nombreTexto); // Asigna una cadena para nombre
+        statement.setString(3, descripcionTexto); // Asigna una cadena para descripcion
+        statement.setInt(4, precio); // Asigna un entero para precio
+        statement.setInt(5, anyo);
+        statement.setBytes(6,imagenBytes);
 
         // Ejecutar la consulta de inserción
         int filasInsertadas = statement.executeUpdate();
