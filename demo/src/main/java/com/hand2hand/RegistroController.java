@@ -66,5 +66,18 @@ public class RegistroController {
         
     }
 
+    @FXML
+    private Button botonVolver;
+
+    @FXML
+    private void volver(){
+        try {
+            Stage stage = (Stage) botonVolver.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Login.fxml"))));
+        } catch (IOException e) {
+            
+        }
+        
+    }
 
 }

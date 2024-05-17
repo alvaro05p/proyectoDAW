@@ -1,0 +1,112 @@
+/* Estilos para el AnchorPane principal */
+.root {
+    -fx-background-color: #f0f0f0;
+}
+
+/* Estilos para los TextField */
+.text-field {
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Estilos para los Buttons */
+.button {
+    -fx-background-color: #3b5998;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: #2d4373;
+}
+
+#botonirSubir {
+    -fx-background-color: #4caf50;
+}
+
+#botonSalir {
+    -fx-background-color: #f44336;
+}
+
+/* Estilos para los Labels */
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+}
+
+/* Estilos específicos para los Labels con tamaños personalizados */
+.label[fxml-id="nombre1"],
+.label[fxml-id="nombre2"],
+.label[fxml-id="nombre3"],
+.label[fxml-id="nombre4"],
+.label[fxml-id="nombre5"],
+.label[fxml-id="nombre6"] {
+    -fx-font-size: 14px;
+}
+
+.label[fxml-id="precio1"],
+.label[fxml-id="precio2"],
+.label[fxml-id="precio3"],
+.label[fxml-id="precio4"],
+.label[fxml-id="precio5"],
+.label[fxml-id="precio6"] {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Estilos para los SplitMenuButton */
+.split-menu-button {
+    -fx-background-color: #ececec;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.split-menu-button:hover {
+    -fx-background-color: #dcdcdc;
+}
+
+/* Estilos para los ImageView */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 5, 0.5, 0, 0);
+    -fx-padding: 10px;
+}
+
+/* Estilos para los ScrollPane */
+.scroll-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: #f9f9f9;
+}
+
+/* Estilos para los AnchorPane internos */
+.anchor-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);
+}
+
+/* Estilos para los botones transparentes de los productos */
+.button#prod1,
+.button#prod2,
+.button#prod3,
+.button#prod4,
+.button#prod5,
+.button#prod6 {
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+    -fx-cursor: hand;
+}

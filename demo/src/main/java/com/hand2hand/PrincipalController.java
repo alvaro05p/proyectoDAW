@@ -212,8 +212,9 @@ public class PrincipalController {
 
     @FXML
     private void vistaPrevia1() {
+
+        Main.idProd=1;
         
-        //productoController.saberProd(1);
 
         try {
             Stage stage = (Stage) prod1.getScene().getWindow();
@@ -226,7 +227,7 @@ public class PrincipalController {
     @FXML
     private void vistaPrevia2() {
 
-        //productoController.saberProd(2);
+        Main.idProd=2;
         
         try {
             Stage stage = (Stage) prod2.getScene().getWindow();
@@ -240,7 +241,6 @@ public class PrincipalController {
 
         Main.idProd=3;
         
-        //productoController.saberProd(3);
 
         try {
             Stage stage = (Stage) prod3.getScene().getWindow();
@@ -251,8 +251,9 @@ public class PrincipalController {
     }
     @FXML
     private void vistaPrevia4() {
+
+        Main.idProd=4;
         
-        //productoController.saberProd(4);
 
         try {
             Stage stage = (Stage) prod4.getScene().getWindow();
@@ -263,8 +264,9 @@ public class PrincipalController {
     }
     @FXML
     private void vistaPrevia5() {
+
+        Main.idProd=5;
         
-        //productoController.saberProd(5);
 
         try {
             Stage stage = (Stage) prod5.getScene().getWindow();
@@ -276,7 +278,6 @@ public class PrincipalController {
     @FXML
     private void vistaPrevia6() {
         
-        //productoController.saberProd(6);
 
         Main.idProd=6;
 

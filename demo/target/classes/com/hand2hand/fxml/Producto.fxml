@@ -6,30 +6,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.ProductoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.ProductoController">
    <children>
-      <ImageView fx:id="imagen" fitHeight="281.0" fitWidth="412.0" layoutX="436.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nombre" layoutX="124.0" layoutY="101.0" prefHeight="50.0" prefWidth="161.0">
+      <ImageView fx:id="imagen" fitHeight="281.0" fitWidth="412.0" layoutX="462.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nombre" layoutX="124.0" layoutY="101.0" prefHeight="50.0" prefWidth="220.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="anyo" layoutX="124.0" layoutY="343.0" prefHeight="50.0" prefWidth="161.0">
+      <Label fx:id="anyo" layoutX="124.0" layoutY="343.0" prefHeight="50.0" prefWidth="220.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="precio" layoutX="124.0" layoutY="270.0" prefHeight="50.0" prefWidth="161.0">
+      <Label fx:id="precio" layoutX="124.0" layoutY="270.0" prefHeight="50.0" prefWidth="206.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="descripcion" layoutX="124.0" layoutY="195.0" prefHeight="50.0" prefWidth="161.0">
+      <Label fx:id="descripcion" layoutX="124.0" layoutY="195.0" prefHeight="50.0" prefWidth="227.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <Button fx:id="botonSalir" layoutX="62.0" layoutY="512.0" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="136.0" text="Volver" />
-      <Button fx:id="comprar" layoutX="780.0" layoutY="512.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="136.0" text="comprar/vender" />
+      <Button fx:id="comprar" layoutX="780.0" layoutY="512.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="154.0" text="comprar/vender" />
    </children>
 </AnchorPane>

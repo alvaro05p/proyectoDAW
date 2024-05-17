@@ -6,33 +6,28 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.PrincipalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.PrincipalController">
    <children>
-      <TextField layoutX="445.0" layoutY="33.0" prefHeight="26.0" prefWidth="528.0" promptText="Que andas buscando?" AnchorPane.rightAnchor="174.0" />
+      <TextField layoutX="445.0" layoutY="33.0" prefHeight="36.0" prefWidth="535.0" promptText="Que andas buscando?" AnchorPane.rightAnchor="174.0" />
       <Button fx:id="botonirSubir" layoutX="874.0" layoutY="33.0" mnemonicParsing="false" onAction="#irSubir" prefHeight="26.0" prefWidth="75.0" text="Subir" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="33.0" />
       <Button layoutX="412.0" layoutY="103.0" mnemonicParsing="false" text="Coches" AnchorPane.rightAnchor="632.0" AnchorPane.topAnchor="103.0" />
-      <Button layoutX="415.0" layoutY="103.0" mnemonicParsing="false" text="Motos" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="103.0" />
-      <Button layoutX="513.0" layoutY="103.0" mnemonicParsing="false" text="Hogar" AnchorPane.rightAnchor="430.0" AnchorPane.topAnchor="103.0" />
-      <Button layoutX="610.0" layoutY="103.0" mnemonicParsing="false" text="Deporte" AnchorPane.rightAnchor="321.0" AnchorPane.topAnchor="103.0" />
-      <Button layoutX="719.0" layoutY="103.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Moda" AnchorPane.rightAnchor="219.0" AnchorPane.topAnchor="103.0" />
-      <Label layoutX="51.0" layoutY="59.0" prefHeight="26.0" prefWidth="57.0" text="Filtros" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="59.0">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <SplitMenuButton layoutX="34.0" layoutY="116.0" mnemonicParsing="false" text="Distancia" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="116.0">
+      <Button layoutX="405.0" layoutY="103.0" mnemonicParsing="false" text="Motos" AnchorPane.rightAnchor="516.0" AnchorPane.topAnchor="103.0" />
+      <Button layoutX="522.0" layoutY="103.0" mnemonicParsing="false" text="Hogar" AnchorPane.rightAnchor="398.0" AnchorPane.topAnchor="103.0" />
+      <Button layoutX="645.0" layoutY="103.0" mnemonicParsing="false" text="Deporte" AnchorPane.rightAnchor="262.0" AnchorPane.topAnchor="103.0" />
+      <Button layoutX="782.0" layoutY="103.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="88.0" text="Moda" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="103.0" />
+      <SplitMenuButton layoutX="34.0" layoutY="194.0" mnemonicParsing="false" text="Estado" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="194.0">
         <items>
           <MenuItem mnemonicParsing="false" text="10 km" />
           <MenuItem mnemonicParsing="false" text="30 km" />
             <MenuItem mnemonicParsing="false" text="50 km" />
         </items>
       </SplitMenuButton>
-      <Button fx:id="botonSalir" layoutX="903.0" layoutY="538.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="57.0" text="Salir" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="40.0" />
-      <SplitMenuButton layoutX="34.0" layoutY="168.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Precio" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="168.0">
+      <Button fx:id="botonSalir" layoutX="903.0" layoutY="538.0" mnemonicParsing="false" onAction="#salir" prefHeight="36.0" prefWidth="75.0" text="Salir" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="22.0" />
+      <SplitMenuButton layoutX="34.0" layoutY="248.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Precio" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="248.0">
         <items>
           <MenuItem mnemonicParsing="false" text="0-50€" />
           <MenuItem mnemonicParsing="false" text="50-100€" />
@@ -41,7 +36,7 @@
             <MenuItem mnemonicParsing="false" text="800-3000€" />
         </items>
       </SplitMenuButton>
-      <SplitMenuButton layoutX="34.0" layoutY="216.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Año">
+      <SplitMenuButton layoutX="34.0" layoutY="300.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Año">
          <items>
             <MenuItem mnemonicParsing="false" text="1900-2000" />
             <MenuItem mnemonicParsing="false" text="2000-2010" />
@@ -105,5 +100,10 @@
             </AnchorPane>
         </content>
       </ScrollPane>
+      <ImageView fitHeight="93.0" fitWidth="88.0" layoutX="52.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

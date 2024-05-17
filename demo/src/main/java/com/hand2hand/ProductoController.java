@@ -23,15 +23,7 @@ public class ProductoController {
 
     @FXML
     private Button botonSalir;
-    /*
-    public void saberProd(int id){
-
-        idProducto=id;
-
-    } */
-
     
-
     @FXML
     private void salir() {
         // Cambiar a la página principal
@@ -102,9 +94,5 @@ public class ProductoController {
         // Llama a mostrarProducto() cuando se inicializa el controlador
         mostrarProducto(Main.idProd);
     }
-    
-
-
-    
 
 }
