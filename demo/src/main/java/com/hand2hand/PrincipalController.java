@@ -87,6 +87,21 @@ public class PrincipalController {
     }
 
     @FXML
+    private Button botonAgregarSaldo;
+
+    @FXML
+    private void irSaldo() {
+        // Cambiar a la página principal
+        // Aquí abrimos la página Principal.fxml
+        try {
+            Stage stage = (Stage) botonAgregarSaldo.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Saldo.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void irSubir() {
         // Cambiar a la página principal
         // Aquí abrimos la página Subir.fxml
@@ -336,6 +351,7 @@ public class PrincipalController {
         }
     }
 
+    
    
 
 }

@@ -33,12 +33,12 @@
     -fx-background-color: #f44336;
 }
 
-/* Estilos para los Labels */
+/* Estilos para los Labels 
 .label {
     -fx-font-size: 16px;
     -fx-text-fill: #333333;
 }
-
+*/
 /* Estilos específicos para los Labels con tamaños personalizados */
 .label[fxml-id="nombre1"],
 .label[fxml-id="nombre2"],

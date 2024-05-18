@@ -106,5 +106,6 @@
          </image>
       </ImageView>
       <Button fx:id="botonMostrarTodos" layoutX="826.0" layoutY="103.0" mnemonicParsing="false" onAction="#mostrarTodos" prefHeight="27.0" prefWidth="38.0" text="X" />
+      <Button fx:id="botonAgregarSaldo" layoutX="33.0" layoutY="489.0" mnemonicParsing="false" onAction="#irSaldo" prefHeight="56.0" prefWidth="131.0" text="Agregar saldo" />
    </children>
 </AnchorPane>

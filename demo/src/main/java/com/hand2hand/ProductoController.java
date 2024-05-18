@@ -118,6 +118,13 @@ public class ProductoController {
                 updateStatement.executeUpdate();
                 System.out.println("Reposicionado el producto " + i);
             }
+
+            try {
+                Stage stage = (Stage) botonComprarVender.getScene().getWindow();
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Principal.fxml"))));
+            } catch (IOException e) {
+                
+            }
             
         } catch (SQLException e) {
             System.out.println("Error al conectar a la base de datos: " + e.getMessage());
