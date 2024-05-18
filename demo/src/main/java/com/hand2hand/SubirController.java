@@ -1,9 +1,13 @@
 package com.hand2hand;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,12 +17,15 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Observable;
+import java.util.ResourceBundle;
 
 public class SubirController {
 
@@ -70,7 +77,7 @@ private Button botonSubirProducto;
 @FXML
 private Button botonCancelar;
 
-@FXML
+    @FXML
     private void cancelar() {
         // Salir de la pagina de subir
         // Aquí abrimos la página Principal.fxml
@@ -84,62 +91,88 @@ private Button botonCancelar;
 
 
 
-@FXML
-private void subirProducto() {
-    final String URL = "jdbc:mysql://localhost:3306/hand2hand"; // Cambia por la URL de tu base de datos
-    final String USER = "root"; // Cambia por tu nombre de usuario
-    final String PASSWORD = "root"; // Cambia por tu contraseña
-    
-    // Obtener el texto de los campos de texto
-    String nombreTexto = nombre.getText();
-    String descripcionTexto = descripcion.getText();
-    String precioTexto = precio.getText();
-    String anyoTexto = anyo.getText();
+    @FXML
+    private void subirProducto() {
+        final String URL = "jdbc:mysql://localhost:3306/hand2hand"; // Cambia por la URL de tu base de datos
+        final String USER = "root"; // Cambia por tu nombre de usuario
+        final String PASSWORD = "root"; // Cambia por tu contraseña
+        
+        // Obtener el texto de los campos de texto
+        String nombreTexto = nombre.getText();
+        String descripcionTexto = descripcion.getText();
+        String precioTexto = precio.getText();
+        String anyoTexto = anyo.getText();
+        String categoriaSeleccionada = categoria.getValue();
 
 
 
-    // Convertir el texto del precio y el año a un valor numérico
-    int precio = Integer.parseInt(precioTexto);
-    int anyo = Integer.parseInt(anyoTexto);
+        // Convertir el texto del precio y el año a un valor numérico
+        int precio = Integer.parseInt(precioTexto);
+        int anyo = Integer.parseInt(anyoTexto);
 
-    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-        System.out.println("Conexión exitosa a la base de datos");
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            System.out.println("Conexión exitosa a la base de datos");
 
-        String countSql = "SELECT COUNT(*) FROM productos";
-        PreparedStatement countStatement = connection.prepareStatement(countSql);
-        ResultSet countResult = countStatement.executeQuery();
-        countResult.next(); // Mover el cursor al primer resultado
-        int rowCount = countResult.getInt(1);
+            String countSql = "SELECT COUNT(*) FROM productos";
+            PreparedStatement countStatement = connection.prepareStatement(countSql);
+            ResultSet countResult = countStatement.executeQuery();
+            countResult.next(); // Mover el cursor al primer resultado
+            int rowCount = countResult.getInt(1);
 
-        int siguienteIdProducto = rowCount + 1;
+            int siguienteIdProducto = rowCount + 1;
 
-        // Query para insertar datos sin incluir la columna idUsuario
-        String sql = "INSERT INTO productos (idProductos, nombre, descripcion, precio, anyo, imagen) VALUES (?, ?, ?, ?, ?, ?)";
+            // Query para insertar datos sin incluir la columna idUsuario
+            String sql = "INSERT INTO productos (idProductos, nombre, descripcion, precio, anyo, imagen, categoria) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        // Crear una declaración preparada
-        PreparedStatement statement = connection.prepareStatement(sql);
+            // Crear una declaración preparada
+            PreparedStatement statement = connection.prepareStatement(sql);
 
-        // Asignar valores a los parámetros de la declaración preparada
-        statement.setInt(1, siguienteIdProducto);
-        statement.setString(2, nombreTexto); // Asigna una cadena para nombre
-        statement.setString(3, descripcionTexto); // Asigna una cadena para descripcion
-        statement.setInt(4, precio); // Asigna un entero para precio
-        statement.setInt(5, anyo);
-        statement.setBytes(6,imagenBytes);
+            // Asignar valores a los parámetros de la declaración preparada
+            statement.setInt(1, siguienteIdProducto);
+            statement.setString(2, nombreTexto); // Asigna una cadena para nombre
+            statement.setString(3, descripcionTexto); // Asigna una cadena para descripcion
+            statement.setInt(4, precio); // Asigna un entero para precio
+            statement.setInt(5, anyo);
+            statement.setBytes(6,imagenBytes);
+            statement.setString(7, categoriaSeleccionada);
 
-        // Ejecutar la consulta de inserción
-        int filasInsertadas = statement.executeUpdate();
-        System.out.println("Se insertaron " + filasInsertadas + " filas");
+            // Ejecutar la consulta de inserción
+            int filasInsertadas = statement.executeUpdate();
+            System.out.println("Se insertaron " + filasInsertadas + " filas");
 
-        Stage stage = (Stage) botonSubirProducto.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Principal.fxml"))));
+            Stage stage = (Stage) botonSubirProducto.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Principal.fxml"))));
 
-    } catch (SQLException | IOException e) {
-        System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+        } catch (SQLException | IOException e) {
+            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+        }
+
     }
 
-}
 
+    @FXML
+    private ComboBox<String> categoria;
+
+    private ObservableList<String> categorias = FXCollections.observableArrayList("Coches", "Motos", "Hogar", "Deporte", "Moda");
+
+    @FXML
+    public void listarCategorias(Event event) {
+        LlenarCombo(categoria, categorias);
+    }
+
+    private void LlenarCombo(ComboBox<String> comboBox, ObservableList<String> items) {
+        comboBox.setItems(items);
+        if (!items.isEmpty()) {
+            comboBox.setValue(items.get(0)); // Opcional: establecer valor por defecto
+        }
+    }
+
+
+
+
+
+
+    
 
 }
 

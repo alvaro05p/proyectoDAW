@@ -14,11 +14,11 @@
    <children>
       <TextField layoutX="445.0" layoutY="33.0" prefHeight="36.0" prefWidth="535.0" promptText="Que andas buscando?" AnchorPane.rightAnchor="174.0" />
       <Button fx:id="botonirSubir" layoutX="874.0" layoutY="33.0" mnemonicParsing="false" onAction="#irSubir" prefHeight="26.0" prefWidth="75.0" text="Subir" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="33.0" />
-      <Button layoutX="412.0" layoutY="103.0" mnemonicParsing="false" text="Coches" AnchorPane.rightAnchor="632.0" AnchorPane.topAnchor="103.0" />
-      <Button layoutX="405.0" layoutY="103.0" mnemonicParsing="false" text="Motos" AnchorPane.rightAnchor="516.0" AnchorPane.topAnchor="103.0" />
-      <Button layoutX="522.0" layoutY="103.0" mnemonicParsing="false" text="Hogar" AnchorPane.rightAnchor="398.0" AnchorPane.topAnchor="103.0" />
-      <Button layoutX="645.0" layoutY="103.0" mnemonicParsing="false" text="Deporte" AnchorPane.rightAnchor="262.0" AnchorPane.topAnchor="103.0" />
-      <Button layoutX="782.0" layoutY="103.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="88.0" text="Moda" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="103.0" />
+      <Button fx:id="botonFiltroCoches" layoutX="199.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarCoches" text="Coches" AnchorPane.rightAnchor="717.0" AnchorPane.topAnchor="103.0" />
+      <Button fx:id="botonFiltroMotos" layoutX="320.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarMotos" text="Motos" AnchorPane.rightAnchor="601.0" AnchorPane.topAnchor="103.0" />
+      <Button fx:id="botonFiltroHogar" layoutX="438.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarHogar" text="Hogar" AnchorPane.rightAnchor="483.0" AnchorPane.topAnchor="103.0" />
+      <Button fx:id="botonFiltroDeporte" layoutX="562.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarDeporte" text="Deporte" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="103.0" />
+      <Button fx:id="botonFiltroModa" layoutX="697.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarModa" prefHeight="32.0" prefWidth="88.0" text="Moda" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="103.0" />
       <SplitMenuButton layoutX="34.0" layoutY="194.0" mnemonicParsing="false" text="Estado" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="194.0">
         <items>
           <MenuItem mnemonicParsing="false" text="10 km" />
@@ -105,5 +105,6 @@
             <Image url="@../img/logo.png" />
          </image>
       </ImageView>
+      <Button fx:id="botonMostrarTodos" layoutX="826.0" layoutY="103.0" mnemonicParsing="false" onAction="#mostrarTodos" prefHeight="27.0" prefWidth="38.0" text="X" />
    </children>
 </AnchorPane>

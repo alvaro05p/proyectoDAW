@@ -1,5 +1,6 @@
 package com.hand2hand;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -64,26 +65,12 @@ public class PrincipalController {
     @FXML
     private void initialize() {
         // Mostrar los productos al inicializar el controlador
-        mostrarProducto(1,hueco1);
-        mostrarProducto(2,hueco2);
-        mostrarProducto(3,hueco3);
-        mostrarProducto(4,hueco4);
-        mostrarProducto(5,hueco5);
-        mostrarProducto(6,hueco6);
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
 
-        mostrarNombre(1,nombre1);
-        mostrarNombre(2,nombre2);
-        mostrarNombre(3,nombre3);
-        mostrarNombre(4,nombre4);
-        mostrarNombre(5,nombre5);
-        mostrarNombre(6,nombre6);
-
-        mostrarPrecio(1,precio1);
-        mostrarPrecio(2,precio2);
-        mostrarPrecio(3,precio3);
-        mostrarPrecio(4,precio4);
-        mostrarPrecio(5,precio5);
-        mostrarPrecio(6,precio6);
+        // Mostrar todos los productos en los primeros huecos disponibles
+        mostrarTodosLosProductos(huecos, etiquetasNombres, etiquetasPrecios);
 
     }
 
@@ -116,77 +103,133 @@ public class PrincipalController {
         static final String USER = "root"; // Cambia por tu nombre de usuario
         static final String PASSWORD = "root"; // Cambia por tu contraseña
     
-    
-        private void mostrarProducto(int idProducto, ImageView hueco) {
-
-            // Conectar a la base de datos y recuperar la imagen
-            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                String sql = "SELECT imagen FROM productos WHERE idProductos = ?";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, idProducto);
-
-                ResultSet resultSet = statement.executeQuery();
-
-                if (resultSet.next()) {
-                    Blob imagenBlob = resultSet.getBlob("imagen");
-                    InputStream inputStream = imagenBlob.getBinaryStream();
-                    Image imagen = new Image(inputStream);
-                    hueco.setImage(imagen);
-                } else {
-                    System.out.println("No se encontró la imagen en la base de datos para el producto con ID: " + idProducto);
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al conectar a la base de datos: " + e.getMessage());
-            }
-
+        
+        private void mostrarTodosLosProductos(ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios) {
+        // Realiza una consulta para obtener todos los productos
+        String sql = "SELECT imagen, nombre, precio FROM productos";
+        mostrarProductos(sql, huecos, etiquetasNombres, etiquetasPrecios);
         }
 
-        private void mostrarNombre(int idProducto2, Label etiqueta) {
-
-            // Conectar a la base de datos y recuperar el nombre del producto
-            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                String sql = "SELECT nombre FROM productos WHERE idProductos = ?";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, idProducto2);
-        
-                ResultSet resultSet = statement.executeQuery();
-        
-                if (resultSet.next()) {
-                    // Obtener el nombre del producto del ResultSet
-                    String nombreProducto = resultSet.getString("nombre");
-                    // Establecer el nombre del producto en la etiqueta
-                    etiqueta.setText(nombreProducto);
-                } else {
-                    System.out.println("No se encontró el producto en la base de datos con ID: " + idProducto2);
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al conectar a la base de datos: " + e.getMessage());
-            }
+        private void mostrarProductosPorCategoria(String categoria, ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios) {
+            // Realiza una consulta para obtener los productos de la categoría especificada
+            String sql = "SELECT imagen, nombre, precio FROM productos WHERE categoria = ?";
+            mostrarProductos(sql, huecos, etiquetasNombres, etiquetasPrecios, categoria);
         }
 
-        private void mostrarPrecio(int idProducto3, Label etiqueta) {
+    private void mostrarProductos(String sql, ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios, Object... params) {
+            
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            PreparedStatement statement = connection.prepareStatement(sql);
 
-            // Conectar a la base de datos y recuperar el nombre del producto
-            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                String sql = "SELECT precio FROM productos WHERE idProductos = ?";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, idProducto3);
-        
-                ResultSet resultSet = statement.executeQuery();
-        
-                if (resultSet.next()) {
-                    // Obtener el nombre del producto del ResultSet
-                    String precio = resultSet.getString("precio");
-                    precio += "€";
-                    // Establecer el nombre del producto en la etiqueta
-                    etiqueta.setText(precio);
-                } else {
-                    System.out.println("No se encontró el producto en la base de datos con ID: " + idProducto3);
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+            // Si hay parámetros, establece los valores
+            for (int i = 0; i < params.length; i++) {
+                statement.setObject(i + 1, params[i]);
             }
-        }
+
+            ResultSet resultSet = statement.executeQuery();
+
+            int index = 0;
+            while (resultSet.next() && index < huecos.length) {
+                Blob imagenBlob = resultSet.getBlob("imagen");
+                InputStream inputStream = imagenBlob.getBinaryStream();
+                Image imagen = new Image(inputStream);
+                huecos[index].setImage(imagen);
+
+                String nombreProducto = resultSet.getString("nombre");
+                etiquetasNombres[index].setText(nombreProducto);
+
+                String precio = resultSet.getString("precio") + "€";
+                etiquetasPrecios[index].setText(precio);
+
+                index++;
+            }
+
+            // Limpiar los elementos restantes si no hay suficientes productos para llenar todos los huecos
+            for (int i = index; i < huecos.length; i++) {
+                huecos[i].setImage(null);
+                etiquetasNombres[i].setText("");
+                etiquetasPrecios[i].setText("");
+            }
+    } catch (SQLException e) {
+        System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+    }
+}
+
+
+    private Button botonFiltrarCoches;
+    private Button botonFiltrarMotos;
+    private Button botonFiltrarHogar;
+    private Button botonFiltrarDeporte;
+    private Button botonFiltrarModa;
+    private Button botonMostrarTodos;
+
+
+    @FXML
+    private void filtrarCoches() {
+        // Define los huecos y etiquetas de nombre y precio asociados
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
+
+        // Mostrar productos de la categoría "Moda" en los primeros huecos disponibles
+        mostrarProductosPorCategoria("Coches", huecos, etiquetasNombres, etiquetasPrecios);
+    }
+
+    @FXML
+    private void filtrarMotos() {
+        // Define los huecos y etiquetas de nombre y precio asociados
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
+
+        // Mostrar productos de la categoría "Moda" en los primeros huecos disponibles
+        mostrarProductosPorCategoria("Motos", huecos, etiquetasNombres, etiquetasPrecios);
+    }
+
+    @FXML
+    private void filtrarHogar() {
+        // Define los huecos y etiquetas de nombre y precio asociados
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
+
+        // Mostrar productos de la categoría "Moda" en los primeros huecos disponibles
+        mostrarProductosPorCategoria("Hogar", huecos, etiquetasNombres, etiquetasPrecios);
+    }
+
+    @FXML
+    private void filtrarDeporte() {
+        // Define los huecos y etiquetas de nombre y precio asociados
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
+
+        // Mostrar productos de la categoría "Moda" en los primeros huecos disponibles
+        mostrarProductosPorCategoria("Deporte", huecos, etiquetasNombres, etiquetasPrecios);
+    }
+
+    @FXML
+    private void filtrarModa() {
+        // Define los huecos y etiquetas de nombre y precio asociados
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
+
+        // Mostrar productos de la categoría "Moda" en los primeros huecos disponibles
+        mostrarProductosPorCategoria("Moda", huecos, etiquetasNombres, etiquetasPrecios);
+    }
+
+    @FXML
+    private void mostrarTodos() {
+        // Define los huecos y etiquetas de nombre y precio asociados
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
+
+        // Mostrar todos los productos en los primeros huecos disponibles
+        mostrarTodosLosProductos(huecos, etiquetasNombres, etiquetasPrecios);
+    }
+        
 
 
     @FXML
@@ -293,6 +336,7 @@ public class PrincipalController {
         }
     }
 
+   
 
 }
 
