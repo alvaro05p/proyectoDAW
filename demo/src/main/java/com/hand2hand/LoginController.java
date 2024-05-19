@@ -33,6 +33,8 @@ public class LoginController {
     private void enviarApagina() {
         String nombre = usuarioField.getText();
         String contra = contraField.getText();
+
+        Main.registradoAhora=nombre;
     
         // Verificar las credenciales del usuario
         if (verificarCredenciales(nombre, contra)) {

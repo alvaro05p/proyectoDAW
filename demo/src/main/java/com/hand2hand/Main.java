@@ -26,5 +26,7 @@ public class Main extends Application {
     }
 
     public static int idProd;
+
+    public static String registradoAhora;
  
 }
