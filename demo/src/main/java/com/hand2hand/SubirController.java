@@ -116,7 +116,7 @@ private Button botonCancelar;
             String countSql = "SELECT COUNT(*) FROM productos";
             PreparedStatement countStatement = connection.prepareStatement(countSql);
             ResultSet countResult = countStatement.executeQuery();
-            countResult.next(); // Mover el cursor al primer resultado
+            countResult.next();
             int rowCount = countResult.getInt(1);
 
             int siguienteIdProducto = rowCount + 1;

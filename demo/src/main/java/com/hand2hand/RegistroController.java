@@ -1,6 +1,8 @@
 package com.hand2hand;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,6 +13,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class RegistroController {
@@ -42,7 +48,7 @@ public class RegistroController {
             System.out.println("Conexión exitosa a la base de datos");
 
             // Query para insertar datos sin incluir la columna idUsuario
-            String sql = "INSERT INTO usuarios (correo, nombre, contra) VALUES (?,?,?)";
+            String sql = "INSERT INTO usuarios (correo, nombre, contra, imagen) VALUES (?,?,?,?)";
 
             // Crear una declaración preparada
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -50,7 +56,8 @@ public class RegistroController {
             // Asignar valores a los parámetros de la declaración preparada
             statement.setString(1, correo); // Asigna una cadena para correo
             statement.setString(2, nUsuario); // Asigna una cadena para contra
-            statement.setString(3, contra); // Asigna una cadena para contra
+            statement.setString(3, contra); // Asigna una cadena para contraç
+            statement.setBytes(4, imagenBytes);
 
             // Ejecutar la consulta de inserción
             int filasInsertadas = statement.executeUpdate();
@@ -79,5 +86,39 @@ public class RegistroController {
         }
         
     }
+
+    @FXML
+    private Button botonSeleccionar;
+
+    @FXML
+    private ImageView imagenView;
+
+    @FXML
+    private Button botonSubir;
+
+    byte[] imagenBytes;
+
+
+
+    @FXML
+    private void fotoPerfil() throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Foto de perfil");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg", "*.gif"),
+                new ExtensionFilter("Todos los archivos", "*.*")
+        );
+        File archivoSeleccionado = fileChooser.showOpenDialog(null);
+        if (archivoSeleccionado != null) {
+
+            // Cargar la imagen en el ImageView
+            Image imagen = new Image(archivoSeleccionado.toURI().toString());
+            imagenView.setImage(imagen);
+
+            imagenBytes = Files.readAllBytes(archivoSeleccionado.toPath());
+        }
+    }
+
+
 
 }

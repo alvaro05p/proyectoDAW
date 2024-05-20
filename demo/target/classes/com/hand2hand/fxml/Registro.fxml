@@ -14,17 +14,20 @@
       <PasswordField fx:id="contraField" layoutX="228.0" layoutY="239.0" prefHeight="26.0" prefWidth="240.0" />
       <PasswordField fx:id="repetirContraField" layoutX="228.0" layoutY="300.0" prefHeight="26.0" prefWidth="240.0" />
       <Label layoutX="146.0" layoutY="152.0" />
-      <Label layoutX="116.0" layoutY="244.0" text="Contraseña:" />
+      <Label layoutX="95.0" layoutY="246.0" text="Contraseña:" />
       <Label layoutX="55.0" layoutY="305.0" text="Repetir contraseña:" />
-      <Label layoutX="55.0" layoutY="153.0" text="Nombre de usuario:" />
+      <Label layoutX="54.0" layoutY="155.0" text="Nombre de usuario:" />
       <TextField fx:id="correoField" layoutX="228.0" layoutY="89.0" prefHeight="26.0" prefWidth="240.0" />
-      <Label layoutX="146.0" layoutY="94.0" text="Correo:" />
-      <Button fx:id="botonRegistro" layoutX="394.0" layoutY="366.0" mnemonicParsing="false" onAction="#registrar" text="Registrar" />
+      <Label layoutX="132.0" layoutY="96.0" text="Correo:" />
+      <Button fx:id="botonRegistro" layoutX="328.0" layoutY="472.0" mnemonicParsing="false" onAction="#registrar" prefHeight="52.0" prefWidth="140.0" text="Registrar" />
       <ImageView fitHeight="215.0" fitWidth="240.0" layoutX="590.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/logo.png" />
          </image>
       </ImageView>
       <Button fx:id="botonVolver" layoutX="871.0" layoutY="534.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
+      <Label layoutX="35.0" layoutY="380.0" text="Foto de perfil (ocional):" />
+      <Button fx:id="botonSeleccionar" layoutX="208.0" layoutY="370.0" mnemonicParsing="false" onAction="#fotoPerfil" prefHeight="38.0" prefWidth="113.0" text="Seleccionar" />
+      <ImageView fx:id="imagenView" fitHeight="123.0" fitWidth="123.0" layoutX="55.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
