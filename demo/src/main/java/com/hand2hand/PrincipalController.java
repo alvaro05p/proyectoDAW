@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -244,7 +245,39 @@ public class PrincipalController {
         // Mostrar todos los productos en los primeros huecos disponibles
         mostrarTodosLosProductos(huecos, etiquetasNombres, etiquetasPrecios);
     }
+    
+    @FXML
+    private TextField buscador;
+
+    @FXML
+    private Button botonBuscar;
+
+    @FXML
+    private void buscarProducto() {
+        // Obtén el término de búsqueda del campo de texto
+        String terminoBusqueda = buscador.getText();
         
+        // Define los huecos y etiquetas de nombre y precio asociados
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
+        
+        // Realiza la búsqueda con la consulta SQL utilizando LIKE
+        mostrarProductosPorBusqueda(terminoBusqueda, huecos, etiquetasNombres, etiquetasPrecios);
+    }
+
+    private void mostrarProductosPorBusqueda(String termino, ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios) {
+        // Construye la consulta SQL usando LIKE para la búsqueda
+        String sql = "SELECT imagen, nombre, precio FROM productos WHERE nombre LIKE ? OR descripcion LIKE ? OR precio LIKE ?";
+        
+        // Añade comodines % al término de búsqueda
+        String parametroBusqueda = "%" + termino + "%";
+        
+        // Llama al método mostrarProductos con el parámetro de búsqueda
+        mostrarProductos(sql, huecos, etiquetasNombres, etiquetasPrecios, parametroBusqueda, parametroBusqueda, parametroBusqueda);
+    }
+    
+
 
 
     @FXML

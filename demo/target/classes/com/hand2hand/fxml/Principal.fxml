@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.PrincipalController">
    <children>
-      <TextField layoutX="445.0" layoutY="33.0" prefHeight="36.0" prefWidth="535.0" promptText="Que andas buscando?" AnchorPane.rightAnchor="174.0" />
+      <TextField fx:id="buscador" layoutX="191.0" layoutY="33.0" prefHeight="36.0" prefWidth="535.0" promptText="Que andas buscando?" AnchorPane.rightAnchor="274.0" />
       <Button fx:id="botonirSubir" layoutX="874.0" layoutY="33.0" mnemonicParsing="false" onAction="#irSubir" prefHeight="26.0" prefWidth="75.0" text="Subir" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="33.0" />
       <Button fx:id="botonFiltroCoches" layoutX="199.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarCoches" text="Coches" AnchorPane.rightAnchor="717.0" AnchorPane.topAnchor="103.0" />
       <Button fx:id="botonFiltroMotos" layoutX="320.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarMotos" text="Motos" AnchorPane.rightAnchor="601.0" AnchorPane.topAnchor="103.0" />
@@ -107,5 +107,6 @@
       </ImageView>
       <Button fx:id="botonMostrarTodos" layoutX="826.0" layoutY="103.0" mnemonicParsing="false" onAction="#mostrarTodos" prefHeight="27.0" prefWidth="38.0" text="X" />
       <Button fx:id="botonAgregarSaldo" layoutX="33.0" layoutY="489.0" mnemonicParsing="false" onAction="#irSaldo" prefHeight="56.0" prefWidth="131.0" text="Agregar saldo" />
+      <Button fx:id="botonBuscar" layoutX="743.0" layoutY="33.0" mnemonicParsing="false" onAction="#buscarProducto" text="Buscar" />
    </children>
 </AnchorPane>
