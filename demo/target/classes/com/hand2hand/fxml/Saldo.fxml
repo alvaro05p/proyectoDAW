@@ -23,10 +23,7 @@
          </font>
       </Label>
       <TextField fx:id="cuantoAgregar" layoutX="121.0" layoutY="315.0" prefHeight="40.0" prefWidth="190.0" />
-      <ImageView fx:id="fotoPerfil" fitHeight="130.0" fitWidth="126.0" layoutX="311.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/perfil.png" />
-         </image></ImageView>
+      <ImageView fx:id="fotoPerfil" fitHeight="130.0" fitWidth="126.0" layoutX="311.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="130.0" fitWidth="126.0" layoutX="818.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/logo.png" />
@@ -47,10 +44,5 @@
             <Font size="35.0" />
          </font>
       </Label>
-      <ImageView fitHeight="65.0" fitWidth="69.0" layoutX="33.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/tarjeta-removebg-preview.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
