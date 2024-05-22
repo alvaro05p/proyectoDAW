@@ -20,10 +20,8 @@ public class PrincipalController {
 
     @FXML
     private Button botonSalir;
-
     @FXML
     private Button botonirSubir;
-
     @FXML
     private ImageView hueco1;
     @FXML
@@ -61,19 +59,114 @@ public class PrincipalController {
     @FXML
     private Label precio6;
 
-    
+    private static final String URL = "jdbc:mysql://localhost:3306/hand2hand"; // Cambia por la URL de tu base de datos
+    private static final String USER = "root"; // Cambia por tu nombre de usuario
+    private static final String PASSWORD = "root"; // Cambia por tu contraseña
+
+    private int paginaActual = 0;
+    private static final int TAMANO_PAGINA = 6;
+
+    @FXML
+    private Button botonAnterior;
+    @FXML
+    private Button botonSiguiente;
 
     @FXML
     private void initialize() {
-        // Mostrar los productos al inicializar el controlador
         ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
         Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
         Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
-
-        // Mostrar todos los productos en los primeros huecos disponibles
-        mostrarTodosLosProductos(huecos, etiquetasNombres, etiquetasPrecios);
-
+        paginaActual = 0; // Iniciar en la primera página
+        mostrarPaginaActual(huecos, etiquetasNombres, etiquetasPrecios);
     }
+
+    private void mostrarProductos(String sql, ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios, int offset, Object... params) {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            // Si hay parámetros, establece los valores
+            for (int i = 0; i < params.length; i++) {
+                statement.setObject(i + 1, params[i]);
+            }
+            
+            // Establecer los parámetros adicionales para limitar y offset
+            statement.setInt(params.length + 1, TAMANO_PAGINA);
+            statement.setInt(params.length + 2, offset);
+    
+            ResultSet resultSet = statement.executeQuery();
+    
+            int index = 0;
+            while (resultSet.next() && index < huecos.length) {
+                Blob imagenBlob = resultSet.getBlob("imagen");
+                InputStream inputStream = imagenBlob.getBinaryStream();
+                Image imagen = new Image(inputStream);
+                huecos[index].setImage(imagen);
+    
+                String nombreProducto = resultSet.getString("nombre");
+                etiquetasNombres[index].setText(nombreProducto);
+    
+                String precio = resultSet.getString("precio") + "€";
+                etiquetasPrecios[index].setText(precio);
+    
+                index++;
+            }
+    
+            // Limpiar los huecos restantes si hay menos de 6 productos
+            for (int i = index; i < huecos.length; i++) {
+                huecos[i].setImage(null);
+                etiquetasNombres[i].setText("");
+                etiquetasPrecios[i].setText("");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+        }
+    }
+    
+    
+
+    @FXML
+    private void irPaginaAnterior() {
+        if (paginaActual > 0) {
+            paginaActual--;
+            actualizarVistaProductos();
+        }
+    }
+    
+    @FXML
+    private void irPaginaSiguiente() {
+        if ((paginaActual + 1) * TAMANO_PAGINA < contarTotalProductos()) {
+            paginaActual++;
+            actualizarVistaProductos();
+        }
+    }
+    
+    private void actualizarVistaProductos() {
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
+        mostrarPaginaActual(huecos, etiquetasNombres, etiquetasPrecios);
+    }
+    
+    private void mostrarPaginaActual(ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios) {
+        String sql = "SELECT imagen, nombre, precio FROM productos LIMIT ? OFFSET ?";
+        int offset = paginaActual * TAMANO_PAGINA;
+        mostrarProductos(sql, huecos, etiquetasNombres, etiquetasPrecios, offset);
+    }
+    
+    private int contarTotalProductos() {
+        String sql = "SELECT COUNT(*) FROM productos";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+        }
+        return 0;
+    }
+    
 
     @FXML
     private void salir() {
@@ -114,71 +207,41 @@ public class PrincipalController {
         }
     }
 
-
-        static final String URL = "jdbc:mysql://localhost:3306/hand2hand"; // Cambia por la URL de tu base de datos
-        static final String USER = "root"; // Cambia por tu nombre de usuario
-        static final String PASSWORD = "root"; // Cambia por tu contraseña
-    
-        
-        private void mostrarTodosLosProductos(ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios) {
-        // Realiza una consulta para obtener todos los productos
-        String sql = "SELECT imagen, nombre, precio FROM productos";
-        mostrarProductos(sql, huecos, etiquetasNombres, etiquetasPrecios);
-        }
-
-        private void mostrarProductosPorCategoria(String categoria, ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios) {
-            // Realiza una consulta para obtener los productos de la categoría especificada
-            String sql = "SELECT imagen, nombre, precio FROM productos WHERE categoria = ?";
-            mostrarProductos(sql, huecos, etiquetasNombres, etiquetasPrecios, categoria);
-        }
-
-    private void mostrarProductos(String sql, ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios, Object... params) {
-            
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            PreparedStatement statement = connection.prepareStatement(sql);
-
-            // Si hay parámetros, establece los valores
-            for (int i = 0; i < params.length; i++) {
-                statement.setObject(i + 1, params[i]);
-            }
-
-            ResultSet resultSet = statement.executeQuery();
-
-            int index = 0;
-            while (resultSet.next() && index < huecos.length) {
-                Blob imagenBlob = resultSet.getBlob("imagen");
-                InputStream inputStream = imagenBlob.getBinaryStream();
-                Image imagen = new Image(inputStream);
-                huecos[index].setImage(imagen);
-
-                String nombreProducto = resultSet.getString("nombre");
-                etiquetasNombres[index].setText(nombreProducto);
-
-                String precio = resultSet.getString("precio") + "€";
-                etiquetasPrecios[index].setText(precio);
-
-                index++;
-            }
-
-            // Limpiar los elementos restantes si no hay suficientes productos para llenar todos los huecos
-            for (int i = index; i < huecos.length; i++) {
-                huecos[i].setImage(null);
-                etiquetasNombres[i].setText("");
-                etiquetasPrecios[i].setText("");
-            }
-    } catch (SQLException e) {
-        System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+    @FXML
+    private void mostrarTodos() {
+        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
+        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
+        paginaActual = 0; // Reiniciar a la primera página
+        mostrarTodosLosProductos(huecos, etiquetasNombres, etiquetasPrecios);
     }
-}
+
+    private void mostrarTodosLosProductos(ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios) {
+        String sql = "SELECT imagen, nombre, precio FROM productos LIMIT ? OFFSET ?";
+        int offset = paginaActual * TAMANO_PAGINA;
+        mostrarProductos(sql, huecos, etiquetasNombres, etiquetasPrecios, offset);
+    }
 
 
+    private void mostrarProductosPorCategoria(String categoria, ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios) {
+        String sql = "SELECT imagen, nombre, precio FROM productos WHERE categoria = ? LIMIT ? OFFSET ?";
+        int offset = paginaActual * TAMANO_PAGINA;
+        mostrarProductos(sql, huecos, etiquetasNombres, etiquetasPrecios, offset, categoria);
+    }
+    
+
+    @FXML
     private Button botonFiltrarCoches;
+    @FXML
     private Button botonFiltrarMotos;
+    @FXML
     private Button botonFiltrarHogar;
+    @FXML
     private Button botonFiltrarDeporte;
+    @FXML
     private Button botonFiltrarModa;
+    @FXML
     private Button botonMostrarTodos;
-
 
     @FXML
     private void filtrarCoches() {
@@ -187,7 +250,7 @@ public class PrincipalController {
         Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
         Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
 
-        // Mostrar productos de la categoría "Moda" en los primeros huecos disponibles
+        // Mostrar productos de la categoría "Coches" en los primeros huecos disponibles
         mostrarProductosPorCategoria("Coches", huecos, etiquetasNombres, etiquetasPrecios);
     }
 
@@ -198,7 +261,7 @@ public class PrincipalController {
         Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
         Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
 
-        // Mostrar productos de la categoría "Moda" en los primeros huecos disponibles
+        // Mostrar productos de la categoría "Motos" en los primeros huecos disponibles
         mostrarProductosPorCategoria("Motos", huecos, etiquetasNombres, etiquetasPrecios);
     }
 
@@ -209,7 +272,7 @@ public class PrincipalController {
         Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
         Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
 
-        // Mostrar productos de la categoría "Moda" en los primeros huecos disponibles
+        // Mostrar productos de la categoría "Hogar" en los primeros huecos disponibles
         mostrarProductosPorCategoria("Hogar", huecos, etiquetasNombres, etiquetasPrecios);
     }
 
@@ -220,7 +283,7 @@ public class PrincipalController {
         Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
         Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
 
-        // Mostrar productos de la categoría "Moda" en los primeros huecos disponibles
+        // Mostrar productos de la categoría "Deporte" en los primeros huecos disponibles
         mostrarProductosPorCategoria("Deporte", huecos, etiquetasNombres, etiquetasPrecios);
     }
 
@@ -236,156 +299,41 @@ public class PrincipalController {
     }
 
     @FXML
-    private void mostrarTodos() {
-        // Define los huecos y etiquetas de nombre y precio asociados
-        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
-        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
-        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
-
-        // Mostrar todos los productos en los primeros huecos disponibles
-        mostrarTodosLosProductos(huecos, etiquetasNombres, etiquetasPrecios);
-    }
-    
-    @FXML
-    private TextField buscador;
-
-    @FXML
-    private Button botonBuscar;
-
-    @FXML
-    private void buscarProducto() {
-        // Obtén el término de búsqueda del campo de texto
-        String terminoBusqueda = buscador.getText();
-        
-        // Define los huecos y etiquetas de nombre y precio asociados
-        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
-        Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
-        Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
-        
-        // Realiza la búsqueda con la consulta SQL utilizando LIKE
-        mostrarProductosPorBusqueda(terminoBusqueda, huecos, etiquetasNombres, etiquetasPrecios);
-    }
-
-    private void mostrarProductosPorBusqueda(String termino, ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios) {
-        // Construye la consulta SQL usando LIKE para la búsqueda
-        String sql = "SELECT imagen, nombre, precio FROM productos WHERE nombre LIKE ? OR descripcion LIKE ? OR precio LIKE ?";
-        
-        // Añade comodines % al término de búsqueda
-        String parametroBusqueda = "%" + termino + "%";
-        
-        // Llama al método mostrarProductos con el parámetro de búsqueda
-        mostrarProductos(sql, huecos, etiquetasNombres, etiquetasPrecios, parametroBusqueda, parametroBusqueda, parametroBusqueda);
-    }
-    
-
-
-
-    @FXML
     private Button prod1;
-
     @FXML
     private Button prod2;
-
     @FXML
     private Button prod3;
-
     @FXML
     private Button prod4;
-
     @FXML
     private Button prod5;
-
     @FXML
     private Button prod6;
 
     private ProductoController productoController;
 
-
     @FXML
-    private void vistaPrevia1() {
-
-        Main.idProd=1;
-        
+    private void vistaPrevia(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        int id = Integer.parseInt(button.getId().substring(4)); // Extraer el número del ID del botón
+        int adjustedId = id + (paginaActual * TAMANO_PAGINA); // Ajustar el ID en función de la página actual
+        Main.idProd = adjustedId;
 
         try {
-            Stage stage = (Stage) prod1.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
+            Stage stage = (Stage) button.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"));
+            Parent root = loader.load();
+            
+            // Obtener el controlador del producto y establecer el producto correspondiente
+            productoController = loader.getController();
+            productoController.mostrarProducto(adjustedId);
+            
+            stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @FXML
-    private void vistaPrevia2() {
-
-        Main.idProd=2;
-        
-        try {
-            Stage stage = (Stage) prod2.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void vistaPrevia3() {
-
-        Main.idProd=3;
-        
-
-        try {
-            Stage stage = (Stage) prod3.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void vistaPrevia4() {
-
-        Main.idProd=4;
-        
-
-        try {
-            Stage stage = (Stage) prod4.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void vistaPrevia5() {
-
-        Main.idProd=5;
-        
-
-        try {
-            Stage stage = (Stage) prod5.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    @FXML
-    private void vistaPrevia6() {
-        
-
-        Main.idProd=6;
-
-        try {
-            Stage stage = (Stage) prod6.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Producto.fxml"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    
-   
 
 }
-

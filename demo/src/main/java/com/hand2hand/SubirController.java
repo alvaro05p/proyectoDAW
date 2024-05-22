@@ -122,7 +122,7 @@ private Button botonCancelar;
             int siguienteIdProducto = rowCount + 1;
 
             // Query para insertar datos sin incluir la columna idUsuario
-            String sql = "INSERT INTO productos (idProductos, nombre, descripcion, precio, anyo, imagen, categoria) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO productos (idProductos, nombre, descripcion, precio, anyo, imagen, categoria, vendedor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             // Crear una declaración preparada
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -135,6 +135,7 @@ private Button botonCancelar;
             statement.setInt(5, anyo);
             statement.setBytes(6,imagenBytes);
             statement.setString(7, categoriaSeleccionada);
+            statement.setString(8, Main.registradoAhora);
 
             // Ejecutar la consulta de inserción
             int filasInsertadas = statement.executeUpdate();

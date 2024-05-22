@@ -2,48 +2,20 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitMenuButton?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hand2hand.PrincipalController">
    <children>
-      <TextField fx:id="buscador" layoutX="191.0" layoutY="33.0" prefHeight="36.0" prefWidth="535.0" promptText="Que andas buscando?" AnchorPane.rightAnchor="274.0" />
       <Button fx:id="botonirSubir" layoutX="874.0" layoutY="33.0" mnemonicParsing="false" onAction="#irSubir" prefHeight="26.0" prefWidth="75.0" text="Subir" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="33.0" />
       <Button fx:id="botonFiltroCoches" layoutX="199.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarCoches" text="Coches" AnchorPane.rightAnchor="717.0" AnchorPane.topAnchor="103.0" />
       <Button fx:id="botonFiltroMotos" layoutX="320.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarMotos" text="Motos" AnchorPane.rightAnchor="601.0" AnchorPane.topAnchor="103.0" />
       <Button fx:id="botonFiltroHogar" layoutX="438.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarHogar" text="Hogar" AnchorPane.rightAnchor="483.0" AnchorPane.topAnchor="103.0" />
       <Button fx:id="botonFiltroDeporte" layoutX="562.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarDeporte" text="Deporte" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="103.0" />
       <Button fx:id="botonFiltroModa" layoutX="697.0" layoutY="103.0" mnemonicParsing="false" onAction="#filtrarModa" prefHeight="32.0" prefWidth="88.0" text="Moda" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="103.0" />
-      <SplitMenuButton layoutX="34.0" layoutY="194.0" mnemonicParsing="false" text="Estado" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="194.0">
-        <items>
-          <MenuItem mnemonicParsing="false" text="10 km" />
-          <MenuItem mnemonicParsing="false" text="30 km" />
-            <MenuItem mnemonicParsing="false" text="50 km" />
-        </items>
-      </SplitMenuButton>
       <Button fx:id="botonSalir" layoutX="903.0" layoutY="538.0" mnemonicParsing="false" onAction="#salir" prefHeight="36.0" prefWidth="75.0" text="Salir" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="22.0" />
-      <SplitMenuButton layoutX="34.0" layoutY="248.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Precio" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="248.0">
-        <items>
-          <MenuItem mnemonicParsing="false" text="0-50€" />
-          <MenuItem mnemonicParsing="false" text="50-100€" />
-            <MenuItem mnemonicParsing="false" text="100-300€" />
-            <MenuItem mnemonicParsing="false" text="300-800€" />
-            <MenuItem mnemonicParsing="false" text="800-3000€" />
-        </items>
-      </SplitMenuButton>
-      <SplitMenuButton layoutX="34.0" layoutY="300.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Año">
-         <items>
-            <MenuItem mnemonicParsing="false" text="1900-2000" />
-            <MenuItem mnemonicParsing="false" text="2000-2010" />
-            <MenuItem mnemonicParsing="false" text="2010-2020" />
-            <MenuItem mnemonicParsing="false" text="2020-2024" />
-         </items>
-      </SplitMenuButton>
       <ScrollPane layoutX="191.0" layoutY="156.0" prefHeight="409.0" prefWidth="685.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="672.0">
@@ -53,7 +25,7 @@
                         <ImageView fx:id="hueco1" fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <Label fx:id="nombre1" layoutX="14.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" />
                         <Label fx:id="precio1" layoutX="137.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="0.0" />
-                        <Button fx:id="prod1" layoutX="48.0" layoutY="65.0" mnemonicParsing="false" onAction="#vistaPrevia1" prefHeight="155.0" prefWidth="200.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="prod1" layoutX="48.0" layoutY="65.0" mnemonicParsing="false" onAction="#vistaPrevia" prefHeight="155.0" prefWidth="200.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="386.0" layoutY="23.0" prefHeight="155.0" prefWidth="200.0">
@@ -61,7 +33,7 @@
                         <ImageView fx:id="hueco2" fitHeight="117.0" fitWidth="200.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0" />
                         <Label fx:id="nombre2" layoutX="14.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" />
                         <Label fx:id="precio2" layoutX="137.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
-                        <Button fx:id="prod2" layoutX="37.0" layoutY="29.0" mnemonicParsing="false" onAction="#vistaPrevia2" prefHeight="184.0" prefWidth="237.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="prod2" layoutX="37.0" layoutY="29.0" mnemonicParsing="false" onAction="#vistaPrevia" prefHeight="184.0" prefWidth="237.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="60.0" layoutY="193.0" prefHeight="155.0" prefWidth="200.0">
@@ -69,7 +41,7 @@
                         <ImageView fx:id="hueco3" fitHeight="117.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0" />
                         <Label fx:id="nombre3" layoutX="14.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" />
                         <Label fx:id="precio3" layoutX="137.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
-                        <Button fx:id="prod3" layoutX="25.0" layoutY="47.0" mnemonicParsing="false" onAction="#vistaPrevia3" prefHeight="202.0" prefWidth="225.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="prod3" layoutX="25.0" layoutY="47.0" mnemonicParsing="false" onAction="#vistaPrevia" prefHeight="202.0" prefWidth="225.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="368.0" layoutY="193.0" prefHeight="155.0" prefWidth="200.0">
@@ -77,7 +49,7 @@
                         <ImageView fx:id="hueco4" fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <Label fx:id="nombre4" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" />
                         <Label fx:id="precio4" layoutX="145.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-                        <Button fx:id="prod4" layoutX="19.0" layoutY="47.0" mnemonicParsing="false" onAction="#vistaPrevia4" prefHeight="202.0" prefWidth="219.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="prod4" layoutX="19.0" layoutY="47.0" mnemonicParsing="false" onAction="#vistaPrevia" prefHeight="202.0" prefWidth="219.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="54.0" layoutY="365.0" prefHeight="155.0" prefWidth="200.0">
@@ -85,7 +57,7 @@
                         <ImageView fx:id="hueco5" fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <Label fx:id="nombre5" layoutX="14.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" />
                         <Label fx:id="precio5" layoutX="137.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
-                        <Button fx:id="prod5" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#vistaPrevia5" prefHeight="169.0" prefWidth="214.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="prod5" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#vistaPrevia" prefHeight="169.0" prefWidth="214.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="368.0" layoutY="365.0" prefHeight="155.0" prefWidth="200.0">
@@ -93,7 +65,7 @@
                         <ImageView fx:id="hueco6" fitHeight="117.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <Label fx:id="nombre6" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" />
                         <Label fx:id="precio6" layoutX="145.0" layoutY="123.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-                        <Button fx:id="prod6" layoutX="-28.0" layoutY="-15.0" mnemonicParsing="false" onAction="#vistaPrevia6" prefHeight="155.0" prefWidth="200.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="prod6" layoutX="-28.0" layoutY="-15.0" mnemonicParsing="false" onAction="#vistaPrevia" prefHeight="155.0" prefWidth="200.0" style="-fx-opacity: 0;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -106,7 +78,8 @@
          </image>
       </ImageView>
       <Button fx:id="botonMostrarTodos" layoutX="826.0" layoutY="103.0" mnemonicParsing="false" onAction="#mostrarTodos" prefHeight="27.0" prefWidth="38.0" text="X" />
-      <Button fx:id="botonAgregarSaldo" layoutX="33.0" layoutY="489.0" mnemonicParsing="false" onAction="#irSaldo" prefHeight="56.0" prefWidth="131.0" text="Agregar saldo" />
-      <Button fx:id="botonBuscar" layoutX="743.0" layoutY="33.0" mnemonicParsing="false" onAction="#buscarProducto" text="Buscar" />
+      <Button fx:id="botonAgregarSaldo" layoutX="31.0" layoutY="205.0" mnemonicParsing="false" onAction="#irSaldo" prefHeight="56.0" prefWidth="131.0" text="Agregar saldo" />
+      <Button fx:id="botonAnterior" layoutX="31.0" layoutY="323.0" mnemonicParsing="false" onAction="#irPaginaAnterior" prefHeight="38.0" prefWidth="39.0" text="&lt;" />
+      <Button fx:id="botonSiguiente" layoutX="114.0" layoutY="323.0" mnemonicParsing="false" onAction="#irPaginaSiguiente" prefHeight="38.0" prefWidth="41.0" text="&gt;" />
    </children>
 </AnchorPane>
