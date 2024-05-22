@@ -6,11 +6,13 @@ import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -26,52 +28,86 @@ public class RegistroController {
 
     @FXML
     private TextField contraField;
+    
+    @FXML
+    private TextField repetirContraField;
+
 
     @FXML
     private TextField nUsuarioField;
 
+    
     @FXML
     private Button botonRegistro;
 
     @FXML
     private void registrar() {
+    final String URL = "jdbc:mysql://localhost:3306/hand2hand"; // Cambia por la URL de tu base de datos
+    final String USER = "root"; // Cambia por tu nombre de usuario
+    final String PASSWORD = "root"; // Cambia por tu contraseña
 
-        final String URL = "jdbc:mysql://localhost:3306/hand2hand"; // Cambia por la URL de tu base de datos
-        final String USER = "root"; // Cambia por tu nombre de usuario
-        final String PASSWORD = "root"; // Cambia por tu contraseña
-        // Cambiar a la página principal
-        // Aquí abrimos la página Principal.fxml
-        String correo = correoField.getText();
-        String nUsuario = nUsuarioField.getText();
-        String contra = contraField.getText();
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            System.out.println("Conexión exitosa a la base de datos");
+    // Obtener los valores de los campos de texto
+    String correo = correoField.getText().trim();
+    String nUsuario = nUsuarioField.getText().trim();
+    String contra = contraField.getText(); // No se necesita trim para la contraseña
 
-            // Query para insertar datos sin incluir la columna idUsuario
-            String sql = "INSERT INTO usuarios (correo, nombre, contra, imagen) VALUES (?,?,?,?)";
+    // Verificar si algún campo está vacío
+    if (correo.isEmpty() || nUsuario.isEmpty() || contra.isEmpty()) {
+        mostrarAlerta("Debes rellenar todos los campos");
+        return; // Detener el proceso si algún campo está vacío
+    }
 
-            // Crear una declaración preparada
-            PreparedStatement statement = connection.prepareStatement(sql);
-            
-            // Asignar valores a los parámetros de la declaración preparada
-            statement.setString(1, correo); // Asigna una cadena para correo
-            statement.setString(2, nUsuario); // Asigna una cadena para contra
-            statement.setString(3, contra); // Asigna una cadena para contraç
-            statement.setBytes(4, imagenBytes);
+    if (!contra.equals(repetirContraField.getText())) {
+        mostrarAlerta("Las contraseñas no coinciden");
+        return; // Detener el proceso si las contraseñas no coinciden
+    }
 
-            // Ejecutar la consulta de inserción
-            int filasInsertadas = statement.executeUpdate();
-            System.out.println("Se insertaron " + filasInsertadas + " filas");
-
-            Stage stage = (Stage) botonRegistro.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Login.fxml"))));
-
-        } catch (SQLException | IOException e) {
-            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        // Verificar si ya existe un usuario con el mismo nombre
+        String existeUsuarioSQL = "SELECT COUNT(*) FROM usuarios WHERE nombre = ?";
+        PreparedStatement existeUsuarioStatement = connection.prepareStatement(existeUsuarioSQL);
+        existeUsuarioStatement.setString(1, nUsuario);
+        ResultSet resultSet = existeUsuarioStatement.executeQuery();
+        resultSet.next();
+        int cantidadUsuarios = resultSet.getInt(1);
+        if (cantidadUsuarios > 0) {
+            mostrarAlerta("Ya existe un usuario con ese nombre");
+            return; // Detener el proceso si el usuario ya existe
         }
 
-        
+        // Query para insertar nuevos usuarios
+        String sql = "INSERT INTO usuarios (correo, nombre, contra, imagen) VALUES (?,?,?,?)";
+
+        // Crear una declaración preparada
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        // Asignar valores a los parámetros de la declaración preparada
+        statement.setString(1, correo);
+        statement.setString(2, nUsuario);
+        statement.setString(3, contra);
+        statement.setBytes(4, imagenBytes);
+
+        // Ejecutar la consulta de inserción
+        int filasInsertadas = statement.executeUpdate();
+        System.out.println("Se insertaron " + filasInsertadas + " filas");
+
+        // Redirigir a la página de inicio de sesión
+        Stage stage = (Stage) botonRegistro.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Login.fxml"))));
+
+    } catch (SQLException | IOException e) {
+        System.out.println("Error al conectar a la base de datos: " + e.getMessage());
     }
+}
+
+private void mostrarAlerta(String mensaje) {
+    Alert alerta = new Alert(Alert.AlertType.WARNING);
+    alerta.setTitle("Error");
+    alerta.setHeaderText(null);
+    alerta.setContentText(mensaje);
+    alerta.showAndWait();
+}
+
 
     @FXML
     private Button botonVolver;

@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -104,7 +105,10 @@ private Button botonCancelar;
         String anyoTexto = anyo.getText();
         String categoriaSeleccionada = categoria.getValue();
 
-
+        if (nombreTexto.isEmpty() || descripcionTexto.isEmpty() || precioTexto.isEmpty() || anyoTexto.isEmpty() || categoriaSeleccionada == null) {
+            mostrarAlerta();
+            return; // Detener el proceso si algún campo está vacío
+        }
 
         // Convertir el texto del precio y el año a un valor numérico
         int precio = Integer.parseInt(precioTexto);
@@ -150,6 +154,13 @@ private Button botonCancelar;
 
     }
 
+    private void mostrarAlerta() {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("Error");
+        alerta.setHeaderText(null);
+        alerta.setContentText("Debes rellenar todos los campos");
+        alerta.showAndWait();
+    }
 
     @FXML
     private ComboBox<String> categoria;
