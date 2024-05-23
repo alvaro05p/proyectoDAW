@@ -125,7 +125,7 @@ private Button botonCancelar;
 
             int siguienteIdProducto = rowCount + 1;
 
-            // Query para insertar datos sin incluir la columna idUsuario
+            // Query para insertar los datos del productos
             String sql = "INSERT INTO productos (idProductos, nombre, descripcion, precio, anyo, imagen, categoria, vendedor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             // Crear una declaración preparada

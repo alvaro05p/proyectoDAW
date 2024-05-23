@@ -73,11 +73,18 @@ public class PrincipalController {
 
     @FXML
     private void initialize() {
-        ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
+    
+        actualizar();
+
+    }
+
+    private void actualizar(){
+    ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
         Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
         Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
         paginaActual = 0; // Iniciar en la primera página
         mostrarPaginaActual(huecos, etiquetasNombres, etiquetasPrecios);
+        contarTotalProductos();
     }
 
     private void mostrarProductos(String sql, ImageView[] huecos, Label[] etiquetasNombres, Label[] etiquetasPrecios, int offset, Object... params) {
@@ -159,7 +166,9 @@ public class PrincipalController {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
+                Main.totalProductos=resultSet.getInt(1);
                 return resultSet.getInt(1);
+               
             }
         } catch (SQLException e) {
             System.out.println("Error al conectar a la base de datos: " + e.getMessage());
@@ -212,7 +221,7 @@ public class PrincipalController {
         ImageView[] huecos = {hueco1, hueco2, hueco3, hueco4, hueco5, hueco6};
         Label[] etiquetasNombres = {nombre1, nombre2, nombre3, nombre4, nombre5, nombre6};
         Label[] etiquetasPrecios = {precio1, precio2, precio3, precio4, precio5, precio6};
-        paginaActual = 0; // Reiniciar a la primera página
+        paginaActual = 0;
         mostrarTodosLosProductos(huecos, etiquetasNombres, etiquetasPrecios);
     }
 

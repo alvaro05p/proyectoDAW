@@ -150,7 +150,7 @@ public class ProductoController {
                     System.out.println("Producto " + Main.idProd + " vendido o eliminado");
     
                     // Reposicionar el resto de productos
-                    for (int i = Main.idProd + 1; i <= 6; i++) {
+                    for (int i = Main.idProd + 1; i <= Main.totalProductos; i++) {
                         String updateSql = "UPDATE productos SET idProductos = ? WHERE idProductos = ?";
                         PreparedStatement updateStatement = connection.prepareStatement(updateSql);
                         updateStatement.setInt(1, i - 1);
@@ -179,7 +179,7 @@ public class ProductoController {
                 System.out.println("Producto " + Main.idProd + " eliminado");
     
                 // Reposicionar el resto de productos
-                for (int i = Main.idProd + 1; i <= 6; i++) {
+                for (int i = Main.idProd + 1; i <= Main.totalProductos; i++) {
                     String updateSql = "UPDATE productos SET idProductos = ? WHERE idProductos = ?";
                     PreparedStatement updateStatement = connection.prepareStatement(updateSql);
                     updateStatement.setInt(1, i - 1);
@@ -188,7 +188,7 @@ public class ProductoController {
                     System.out.println("Reposicionado el producto " + i);
                 }
     
-                // Redirigir a la página principal
+                // Volver a la página principal
                 try {
                     Stage stage = (Stage) botonComprarVender.getScene().getWindow();
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/com/hand2hand/fxml/Principal.fxml"))));
